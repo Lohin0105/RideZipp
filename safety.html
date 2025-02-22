@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - RideZipp</title>
+  <style>
+    /* Same CSS as your existing project */
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f4f4f4;
+      font-family: Arial, sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
+    .background-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: rgba(255, 255, 255, 0.1);
+      z-index: -1;
+    }
+    .background-text h1 {
+      font-size: 10rem;
+      margin: 0;
+    }
+    .background-text p {
+      font-size: 2rem;
+      margin: 0;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background: white;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+    .logo-container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      color: red;
+      margin-left: 0.5cm;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.3s ease-in-out;
+    }
+    .logo:hover {
+      transform: scale(1.1);
+    }
+    .slogan {
+      font-size: 0.6rem;
+      margin-top: 5px;
+    }
+    .menu {
+      display: flex;
+      gap: 10px;
+      margin-left: auto;
+    }
+    .menu button {
+      background: none;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+      color: black;
+      transition: transform 0.2s ease-in-out, color 0.2s;
+    }
+    .menu button:hover {
+      transform: translateY(-3px);
+      color: black;
+    }
+    .main-content {
+      flex: 1;
+      background-image: url('car-pooling.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      position: relative;
+      margin-top: 60px;
+      padding: 20px;
+      overflow-y: auto;
+      height: calc(100vh - 60px);
+    }
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      font-size: 24px;
+      color: black;
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      z-index: 1100;
+      background: white;
+      padding: 10px;
+      border-radius: 50%;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      background: white;
+      position: fixed;
+      top: 60px;
+      right: 0;
+      width: 200px;
+      padding: 10px;
+      box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      border-radius: 0 0 0 8px;
+    }
+    .mobile-menu button {
+      background: none;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+      color: black;
+      text-align: left;
+      padding: 10px;
+    }
+    .mobile-menu button:hover {
+      background: #f0f0f0;
+    }
+    @media (max-width: 768px) {
+      .menu {
+        display: none;
+      }
+      .hamburger {
+        display: block;
+      }
+      .mobile-menu {
+        width: 100%;
+        max-width: 250px;
+      }
+      html, body {
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    }
+    @media (min-width: 769px) {
+      .hamburger {
+        display: none !important;
+      }
+    }
+    .footer {
+      background: rgb(248, 245, 245);
+      color: rgb(8, 8, 8);
+      text-align: center;
+      padding: 2px;
+      width: 100%;
+      position: relative;
+    }
+    .about-content {
+      background: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 80%;
+      max-width: 600px;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="logo-container">
+      <div class="logo">RideZipp</div>
+      <div class="slogan">SHARE MORE, SAVE MORE</div>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+    <div class="menu">
+      <button onclick="window.location.href='home.html'">Home</button>
+      <button onclick="window.location.href='about.html'">About</button>
+      <button onclick="window.location.href='bookings.html'">Bookings</button>
+      <button onclick="window.location.href='safety.html'">Safety</button>
+      <button onclick="window.location.href='support.html'">Support</button>
+      <button onclick="logout()">Logout</button>
+    </div>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <button onclick="window.location.href='home.html'">Home</button>
+      <button onclick="window.location.href='about.html'">About</button>
+      <button onclick="window.location.href='bookings.html'">Bookings</button>
+      <button onclick="window.location.href='safety.html'">Safety</button>
+      <button onclick="window.location.href='support.html'">Support</button>
+      <button onclick="logout()">Logout</button>
+    </div>
+  </div>
+
+  <div class="background-text">
+    <h1>RideZipp</h1>
+    <p>SHARE MORE, SAVE MORE</p>
+  </div>
+
+  <div class="main-content">
+    <div class="about-content">
+      <h2>Safety Tips</h2>
+      <p>Your safety is our top priority. Follow these guidelines to ensure a safe and enjoyable ride-sharing experience:</p>
+      <ul>
+        <li>Always verify the driver and vehicle details before boarding.</li>
+        <li>Share your ride details with a trusted contact.</li>
+        <li>Avoid sharing personal information with strangers.</li>
+        <li>Use the in-app emergency button if you feel unsafe.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>&copy; 2023 RideZipp. All rights reserved. Privacy Policy. Terms of Service</p>
+  </div>
+
+  <script>
+    function logout() {
+      alert("You have been logged out.");
+      window.location.href = 'index.html';
+    }
+
+    function toggleMenu() {
+      const mobileMenu = document.getElementById('mobileMenu');
+      mobileMenu.style.display = mobileMenu.style.display === 'flex' ? 'none' : 'flex';
+    }
+  </script>
+</body>
+</html>
