@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Create a Ride - RideZipp</title>
   <style>
     body {
@@ -15,7 +15,6 @@
       background-color: #f4f4f4;
       font-family: Arial, sans-serif;
       position: relative;
-      overflow: hidden; /* Prevent scrolling */
     }
     .background-text {
       position: absolute;
@@ -51,6 +50,7 @@
       flex-direction: column;
       align-items: flex-start;
       color: red;
+      margin-left: 0.5cm; /* Move logo and slogan 0.5cm to the right */
     }
     .logo {
       font-size: 1.8rem;
@@ -207,7 +207,7 @@
         display: none;
       }
       .hamburger {
-        display: block;
+        display: block; /* Ensure hamburger button is visible */
       }
       .mobile-menu {
         width: 100%;
@@ -272,7 +272,17 @@
       <div class="logo">RideZipp</div>
       <div class="slogan">SHARE MORE, SAVE MORE</div>
     </div>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
     <div class="menu">
+      <button onclick="window.location.href='home.html'">Home</button>
+      <button>About</button>
+      <button onclick="window.location.href='bookings.html'">Bookings</button>
+      <button>Safety</button>
+      <button>Support</button>
+      <button onclick="logout()">Logout</button>
+    </div>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
       <button onclick="window.location.href='home.html'">Home</button>
       <button>About</button>
       <button onclick="window.location.href='bookings.html'">Bookings</button>
