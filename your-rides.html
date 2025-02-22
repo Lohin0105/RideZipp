@@ -15,7 +15,7 @@
       background-color: #f4f4f4;
       font-family: Arial, sans-serif;
       position: relative;
-      overflow: hidden; /* Prevent scrolling */
+      overflow: hidden; /* Prevent body scrolling */
     }
 
     .background-text {
@@ -108,6 +108,7 @@
       position: relative;
       margin-top: 60px; /* Adjust based on navbar height */
       padding: 20px; /* Adds some spacing around the content */
+      overflow-y: auto; /* Allow scrolling within main-content */
     }
 
     .hamburger {
@@ -118,7 +119,7 @@
       position: fixed;
       top: 15px;
       right: 15px;
-      margin-right: 1cm; /* Move hamburger 1cm to the left */
+      margin-right: 0.5cm; /* Move hamburger 0.5cm to the right */
       z-index: 1100;
       background: white;
       padding: 10px;
