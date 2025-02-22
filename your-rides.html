@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Rides - RideZipp</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f4f4f4;
+      font-family: Arial, sans-serif;
+      position: relative;
+    }
+
+    .background-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: rgba(255, 255, 255, 0.1);
+      z-index: -1;
+    }
+
+    .background-text h1 {
+      font-size: 10rem;
+      margin: 0;
+    }
+
+    .background-text p {
+      font-size: 2rem;
+      margin: 0;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background: white;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .logo-container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      color: red;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .logo:hover {
+      transform: scale(1.1);
+    }
+
+    .slogan {
+      font-size: 0.6rem;
+      margin-top: 5px;
+    }
+
+    .menu {
+      display: flex;
+      gap: 10px;
+      margin-left: auto;
+    }
+
+    .menu button {
+      background: none;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+      color: black;
+      transition: transform 0.2s ease-in-out, color 0.2s;
+    }
+
+    .menu button:hover {
+      transform: translateY(-3px);
+      color: black;
+    }
+
+    .main-content {
+      flex: 1;
+      background-image: url('car-pooling.jpg'); /* Add your background image here */
+      background-size: cover; /* Ensures the image covers the entire area */
+      background-position: center; /* Centers the image */
+      background-repeat: no-repeat; /* Prevents the image from repeating */
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start; /* Align content to the top */
+      align-items: center;
+      position: relative;
+      margin-top: 60px; /* Adjust based on navbar height */
+      padding: 20px; /* Adds some spacing around the content */
+    }
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      font-size: 24px;
+      color: black;
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      z-index: 1100;
+      background: white;
+      padding: 10px;
+      border-radius: 50%;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+  
+    /* Adjust the mobile menu for better visibility */
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      background: white;
+      position: fixed;
+      top: 60px;
+      right: 0;
+      width: 200px;
+      padding: 10px;
+      box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      border-radius: 0 0 0 8px;
+    }
+  
+    .mobile-menu button {
+      background: none;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+      color: black;
+      text-align: left;
+      padding: 10px;
+    }
+  
+    .mobile-menu button:hover {
+      background: #f0f0f0;
+    }
+  
+    /* Ensure visibility on mobile screens */
+    @media (max-width: 768px) {
+      .menu {
+        display: none;
+      }
+      .hamburger {
+        display: block;
+      }
+      .mobile-menu {
+        width: 100%;
+        max-width: 250px;
+      }
+    }
+        @media (min-width: 769px) {
+      .hamburger {
+        display: none !important;
+      }
+    }
+
+    .footer {
+      background: rgb(248, 245, 245);
+      color: rgb(8, 8, 8);
+      text-align: center;
+      padding: 2px;
+      width: 100%;
+      position: relative;
+    }
+
+    .ride-details {
+      background: white;
+      padding: 20px;
+      margin: 10px 0;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 80%; /* Adjust width as needed */
+      max-width: 600px; /* Limit maximum width */
+    }
+
+    .ride-details button {
+      background-color: red;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s ease-in-out;
+    }
+
+    .ride-details button:hover {
+      background-color: darkred;
+      transform: scale(1.05);
+    }
+  </style>
+  <!-- Include jsPDF library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <div class="navbar">
+    <div class="logo-container">
+      <div class="logo">RideZipp</div>
+      <div class="slogan">SHARE MORE, SAVE MORE</div>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+    <div class="menu">
+      <button onclick="window.location.href='home.html'">Home</button>
+      <button>About</button>
+      <button onclick="window.location.href='bookings.html'">Bookings</button>
+      <button>Safety</button>
+      <button>Support</button>
+      <button onclick="logout()">Logout</button>
+    </div>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <button onclick="window.location.href='home.html'">Home</button>
+      <button>About</button>
+      <button onclick="window.location.href='bookings.html'">Bookings</button>
+      <button>Safety</button>
+      <button>Support</button>
+      <button onclick="logout()">Logout</button>
+    </div>
+  </div>
+  <div class="background-text">
+    <h1>RideZipp</h1>
+    <p>SHARE MORE, SAVE MORE</p>
+  </div>
+
+  <div class="main-content">
+    <h2>Your Rides</h2>
+    <div id="rides-container">
+      <!-- Ride details will be dynamically inserted here -->
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>&copy; 2023 RideZipp. All rights reserved. Privacy Policy. Terms of Service</p>
+  </div>
+
+  <script>
+    // Initialize jsPDF
+    const { jsPDF } = window.jspdf;
+
+    function loadRides() {
+      const rides = JSON.parse(localStorage.getItem('rides')) || [];
+      const ridesContainer = document.getElementById("rides-container");
+      ridesContainer.innerHTML = "";
+
+      // Display the last 10 rides
+      rides.slice(-10).forEach((ride, index) => {
+        const rideDiv = document.createElement("div");
+        rideDiv.className = "ride-details";
+        rideDiv.innerHTML = `
+          <p><strong>Route:</strong> ${ride.source} to ${ride.destination}</p>
+          <p><strong>No. of Passengers Booked:</strong> ${ride.passengers.length}</p>
+          <p><strong>Details of Passengers:</strong> ${ride.passengers.join(", ")}</p>
+          <p><strong>Time of Ride:</strong> ${ride.date}</p>
+          <p><strong>Date of Ride:</strong> ${ride.date.split('T')[0]}</p>
+          <button onclick="downloadPDF('${ride.source}', '${ride.destination}', '${ride.passengers.length}', '${ride.passengers.join(", ")}', '${ride.date}')">Download</button>
+        `;
+        ridesContainer.appendChild(rideDiv);
+      });
+    }
+
+    function downloadPDF(source, destination, passengers, passengerDetails, date) {
+      // Create a new jsPDF instance
+      const doc = new jsPDF();
+
+      // Add content to the PDF
+      doc.setFontSize(18);
+      doc.text("Ride Details", 10, 20);
+      doc.setFontSize(12);
+      doc.text(`Route: ${source} to ${destination}`, 10, 30);
+      doc.text(`No. of Passengers Booked: ${passengers}`, 10, 40);
+      doc.text(`Details of Passengers: ${passengerDetails}`, 10, 50);
+      doc.text(`Time of Ride: ${date}`, 10, 60);
+      doc.text(`Date of Ride: ${date.split('T')[0]}`, 10, 70);
+
+      // Add the extra message
+      doc.setFontSize(14);
+      doc.setTextColor(220, 22, 22); // red color for the message
+      doc.text("Thanks for choosing RideZipp, have a nice ride", 10, 110);
+
+      // Save the PDF
+      doc.save(`ride-details-${source}-to-${destination}.pdf`);
+    }
+
+    function logout() {
+      alert("You have been logged out.");
+      window.location.href = 'index.html';
+    }
+    
+    function toggleMenu() {
+      const mobileMenu = document.getElementById('mobileMenu');
+      mobileMenu.style.display = mobileMenu.style.display === 'flex' ? 'none' : 'flex';
+    }
+    loadRides();
+  </script>
+</body>
+</html>
