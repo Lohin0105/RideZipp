@@ -15,7 +15,9 @@
       background-color: #f4f4f4;
       font-family: Arial, sans-serif;
       position: relative;
+      overflow: hidden; /* Prevent body scrolling */
     }
+
     .background-text {
       position: absolute;
       top: 50%;
@@ -25,10 +27,12 @@
       color: rgba(255, 255, 255, 0.1);
       z-index: -1;
     }
+
     .background-text h1 {
       font-size: 10rem;
       margin: 0;
     }
+
     .background-text p {
       font-size: 2rem;
       margin: 0;
@@ -45,6 +49,7 @@
       width: 100%;
       z-index: 1000;
     }
+
     .logo-container {
       display: flex;
       flex-direction: column;
@@ -52,24 +57,29 @@
       color: red;
       margin-left: 0.5cm; /* Move logo and slogan 0.5cm to the right */
     }
+
     .logo {
       font-size: 1.8rem;
       font-weight: bold;
       cursor: pointer;
       transition: transform 0.3s ease-in-out;
     }
+
     .logo:hover {
       transform: scale(1.1);
     }
+
     .slogan {
       font-size: 0.6rem;
       margin-top: 5px;
     }
+
     .menu {
       display: flex;
       gap: 10px;
       margin-left: auto;
     }
+
     .menu button {
       background: none;
       border: none;
@@ -78,6 +88,7 @@
       color: black;
       transition: transform 0.2s ease-in-out, color 0.2s;
     }
+
     .main-content {
       flex: 1;
       background-image: url('car-pooling.jpg'); /* Add your background image here */
@@ -90,11 +101,15 @@
       align-items: center;
       position: relative;
       margin-top: 60px; /* Adjust based on navbar height */
+      overflow-y: auto; /* Allow scrolling within main-content */
+      height: calc(100vh - 60px); /* Set height to viewport height minus navbar height */
     }
+
     .menu button:hover {
       transform: translateY(-3px);
       color: black;
     }
+
     .form-container {
       background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
       padding: 20px;
@@ -102,6 +117,7 @@
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       width: 300px;
     }
+
     input, select, button {
       width: 100%;
       margin: 10px 0;
@@ -110,14 +126,17 @@
       border-radius: 5px;
       font-size: 1rem;
     }
+
     input:focus, select:focus {
       border-color: red;
       box-shadow: 0 0 5px red;
       transition: 0.3s;
     }
+
     .hidden {
       display: none;
     }
+
     .submit-btn {
       background-color: red;
       color: white;
@@ -125,6 +144,7 @@
       cursor: pointer;
       transition: background-color 0.3s, transform 0.2s ease-in-out;
     }
+
     .submit-btn:hover {
       background-color: darkred;
       transform: scale(1.05);
@@ -140,10 +160,12 @@
       display: none;
       z-index: 1000;
     }
+
     .suggestions div {
       padding: 10px;
       cursor: pointer;
     }
+
     .suggestions div:hover {
       background: #f0f0f0;
     }
@@ -156,6 +178,7 @@
       width: 100%;
       position: relative;
     }
+
     .hamburger {
       display: none;
       cursor: pointer;
@@ -221,6 +244,7 @@
         padding: 0;
       }
     }
+
     @media (min-width: 769px) {
       .hamburger {
         display: none !important;
